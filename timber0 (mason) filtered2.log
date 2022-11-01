@@ -1222,4 +1222,3 @@
 2022-10-21T17:21:32.106 D/OffWorkView$bindViewModel: [accelerometer] speed:1.0167156,speedAccuracy:2.0385656,hasSpeedAccuracy:true,interval:4431,acceleration:-0.039059132
 2022-10-21T17:31:45.710 D/OffWorkView$bindViewModel: [accelerometer] speed:0.0,speedAccuracy:0.0,hasSpeedAccuracy:false,interval:617381,acceleration:-0.0019271515
 2022-10-21T17:31:52.274 D/OffWorkView$bindViewModel: [accelerometer] speed:0.65426224,speedAccuracy:0.0,hasSpeedAccuracy:false,interval:624556,acceleration:-8.5744826E-4
-
