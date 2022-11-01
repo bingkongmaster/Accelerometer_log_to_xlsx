@@ -40,7 +40,7 @@ fun main(args: Array<String>) {
         val interval = line.substring(intervalIndex + intervalKeyword.length, accelerationIndex).toDouble()
         val acceleration = line.substring(accelerationIndex + accelerationKeyword.length).toDouble()
 
-        if (interval >= 1100 || interval < 500) return@map
+        if (interval >= 1100 || interval < 900) return@map
 
         val refinedSpeedAccuracy = when {
             hasSpeedAccuracy.not() -> 3.0
