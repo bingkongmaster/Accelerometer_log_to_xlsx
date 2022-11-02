@@ -33,6 +33,7 @@ fun main(args: Array<String>) {
     firstRow.createCell(8).setCellValue("accurateSpeedCount")
     firstRow.createCell(9).setCellValue("accurateAccelerationCount")
 
+    var saveTimeMillis = 0L
     var saveRefinedSpeedAccuracy = 3.0
     var accurateSpeedCount = 0
     var accurateAccelerationCount = 0
@@ -56,8 +57,6 @@ fun main(args: Array<String>) {
         val interval = line.substring(intervalIndex + intervalKeyword.length, accelerationIndex).toDouble()
         val acceleration = line.substring(accelerationIndex + accelerationKeyword.length).toDouble()
 
-        if (interval >= 1100 || interval < 900) return@mapIndexed
-
         val refinedSpeedAccuracy = when {
             hasSpeedAccuracy.not() -> 3.0
             speedAccuracy > 3 -> 3.0
@@ -79,11 +78,14 @@ fun main(args: Array<String>) {
         }
 
         if (refinedSpeedAccuracy < speedAccuracyFilter &&
-            saveRefinedSpeedAccuracy < speedAccuracyFilter) {
+            saveRefinedSpeedAccuracy < speedAccuracyFilter &&
+            interval.toInt() in 999..1001
+        ) {
             accurateAccelerationCount++
         }
 
         saveRefinedSpeedAccuracy = refinedSpeedAccuracy
+        saveTimeMillis = timeMillis
 
         val row = sheet.createRow(lineIndex+1)
         row.createCell(0).setCellValue(time)
@@ -97,7 +99,7 @@ fun main(args: Array<String>) {
         lineIndex++
     }
 
-    val secondRow = sheet.createRow(1)
+    val secondRow = sheet.getRow(1)
     if (startTime != null && endTime != null) {
         secondRow.createCell(7).setCellValue(((endTime!!-startTime!!)/1000).toString())
     }
